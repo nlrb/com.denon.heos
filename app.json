@@ -1,0 +1,12 @@
+{
+    "id": "com.denos.heos",
+    "name": {
+        "en": "Denon Heos"
+    },
+    "version": "1.0.0",
+    "compatibility": "1.x",
+    "author": {
+        "name": "Emile Nijssen",
+        "email": "emile@athom.nl"
+    }
+}
