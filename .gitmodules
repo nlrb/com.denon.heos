@@ -1,0 +1,3 @@
+[submodule "node_modules/denon-heos"]
+	path = node_modules/denon-heos
+	url = git@github.com:WeeJeWel/node-denon-heos.git
