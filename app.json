@@ -6,7 +6,152 @@
     "version": "1.0.0",
     "compatibility": "1.x",
     "author": {
-        "name": "Emile Nijssen",
-        "email": "emile@athom.nl"
-    }
+        "name": "Athom B.V.",
+        "email": "info@athom.nl"
+    },
+    "drivers": [
+	    {
+		    "id": "denonheos",
+		    "name": {
+			    "en": "Denon Heos"
+		    },
+		    "class": "speaker",
+			"capabilities": [ "speaker_playing", "speaker_prev", "speaker_next", "volume_set" ],
+			"mobile": {
+				"components": [
+					{
+						"id": "icon",
+						"capabilities": []
+					},
+					{
+						"id": "button",
+						"capabilities": [ "speaker_prev", "speaker_playing", "speaker_next" ],
+						"options": {
+							"hideTitle": [ "speaker_prev", "speaker_playing", "speaker_next" ],
+							"toggle": [ "speaker_playing" ],
+							"icons": {
+								"speaker_prev": "drivers/denonheos/assets/mobile/prev.svg",
+								"speaker_next": "drivers/denonheos/assets/mobile/next.svg",
+								"speaker_playing": {
+									"true": "drivers/denonheos/assets/mobile/pause.svg",
+									"false": "drivers/denonheos/assets/mobile/play.svg"
+								}
+							}
+						}
+					},
+					{
+						"id": "slider",
+						"capabilities": [ "volume_set" ]
+					}
+				]
+			},
+		    "pair": [
+			    {
+				    "id": "list_devices",
+				    "template": "list_devices",
+				    "navigation": {
+					    "next": "add_devices"
+				    }
+			    },
+			    {
+				    "id": "add_devices",
+				    "template": "add_devices"
+			    }
+		    ]
+	    }
+    ],
+	"flow": {
+		"actions": [
+			{
+				"id": "play",
+				"title": {
+					"en": "Play"
+				},
+				"args": [
+					{
+						"type": "device",
+						"name": "device",
+						"filter": {
+							"driver_id": "denonheos",
+							"capabilities": "speaker_playing"
+						}
+					}
+				]
+			},
+			{
+				"id": "pause",
+				"title": {
+					"en": "Pause"
+				},
+				"args": [
+					{
+						"type": "device",
+						"name": "device",
+						"filter": {
+							"driver_id": "denonheos",
+							"capabilities": "speaker_playing"
+						}
+					}
+				]
+			},
+			{
+				"id": "prev",
+				"title": {
+					"en": "Previous"
+				},
+				"args": [
+					{
+						"type": "device",
+						"name": "device",
+						"filter": {
+							"driver_id": "denonheos",
+							"capabilities": "speaker_prev"
+						}
+					}
+				]
+			},
+			{
+				"id": "next",
+				"title": {
+					"en": "Next"
+				},
+				"args": [
+					{
+						"type": "device",
+						"name": "device",
+						"filter": {
+							"driver_id": "denonheos",
+							"capabilities": "speaker_next"
+						}
+					}
+				]
+			},
+			{
+				"id": "volume_set",
+				"title": {
+					"en": "Set volume"
+				},
+				"args": [
+					{
+						"type": "device",
+						"name": "device",
+						"filter": {
+							"driver_id": "denonheos",
+							"capabilities": "volume_set"
+						}
+					},
+					{
+						"type": "range",
+						"name": "volume",
+						"min": 0,
+						"max": 1,
+						"step": 0.01,
+						"label": "%",
+						"labelMultiplier": 100,
+						"labelDecimals": 0
+					}
+				]
+			}
+		]
+	}
 }
